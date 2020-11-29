@@ -79,7 +79,7 @@ def get_local_file_list(logger,SrcDir=BaseDir, SrcFileIndex='*', str_key=False):
 
 # main
 if __name__ == '__main__':
-    logger, log_file_name = set_log()
+    logger, log_file_name = set_log('/var/log')
     file_list = get_local_file_list(logger)
 
     print(' Get local file list '.center(50, '#'))
