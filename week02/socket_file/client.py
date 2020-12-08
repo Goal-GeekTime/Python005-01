@@ -1,20 +1,22 @@
 #!/usr/bin/env python
-import os
-import sys
-import socket
-import hashlib
 
-'''
+"""
 func description:
-    运行客户端，通过ls查看服务端文件内容，通过 "get filename" 下载服务端文件到本地. 
+    运行客户端，通过ls查看服务端文件内容，通过 "get filename" 下载服务端文件到本地.
 
 example:
     python xxx.py
-    >>: get filename
-'''
+    >>: ls                      # 查看服务端的文件列表
+    >>: get filename            # 下载服务端的文件到本地
+"""
+
+
+import os
+import socket
+import hashlib
 
 HOST = '0.0.0.0'
-PORT = 9998
+PORT = 9999
 
 def ftp_client():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -30,6 +32,7 @@ def ftp_client():
             break
         # get filename. 客户端下载某个文件
         if cmd.startswith("get"):
+            print(cmd.encode())
             client.send(cmd.encode())
             server_response = client.recv(1024)
             if server_response.decode() == '404':
@@ -62,8 +65,24 @@ def ftp_client():
             server_file_md5 = client.recv(1024)
             print("server file md5:", server_file_md5)
             print("client file md5:", new_file_md5)
-    client.close()
 
+        if cmd.startswith("ls"):
+            client.send(cmd.encode('utf-8'))
+            cmd_res_size=client.recv(1024)                  ## 接收命令结果大小
+            print("命令结果大小：",cmd_res_size.decode())
+
+            client.send(b'Ready to accept')                 ## 解决粘包
+
+            received_size=0
+            received_data=b''
+            while received_size < int(cmd_res_size.decode()):
+                data=client.recv(1024)
+                received_size+=len(data)
+                received_data+=data
+            else:
+                print("Command recive done. : {}bytes ".format(received_size))
+                print(received_data.decode())
+    client.close()
 
 # main
 if __name__ == '__main__':
