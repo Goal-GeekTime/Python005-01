@@ -51,12 +51,14 @@
     ```
 
 
-
+<br/>
 
 ## 2. 使用 sqlalchemy ORM 方式创建如下表，使用 PyMySQL 对该表写入 3 条测试数据，并读取:
 1. 创建表和导入测试数据
-   $ cd homework_2
-   $ python orm_learn.py
+    ```
+    $ cd homework_2
+    $ python orm_learn.py
+    ```
 
 2. 创建表  & 插入、查找
     ```
@@ -95,6 +97,7 @@
     ```
 
 
+<br/>
 
 ## 3. 为以下 sql 语句标注执行顺序：
     ```
@@ -108,7 +111,7 @@
     ```
 
 
-
+<br/>
 
 ## 4. 以下两张基于 id 列，分别使用 INNER JOIN、LEFT JOIN、 RIGHT JOIN 的结果是什么?
 
@@ -200,12 +203,14 @@
     ```
 
 
-
+<br/>
 
 ## 5. 使用 MySQL 官方文档，学习通过 sql 语句为上题中的 id 和 name 增加索引，并验证。根据执行时间，增加索引以后是否查询速度会增加？请论述原因，并思考什么样的场景下增加索引才有效。
 1. 创建表和导入测试数据
+    ```
    $ cd homework_5
    $ python index.py
+    ```
 
 2. 普通索引的创建
     ```
@@ -247,6 +252,7 @@
     [CREATE INDEX语句](https://dev.mysql.com/doc/refman/8.0/en/create-index.html)
 
 
+<br/>
 
 ##  6. 张三给李四通过网银转账 100 极客币，现有数据库中三张表：
 
