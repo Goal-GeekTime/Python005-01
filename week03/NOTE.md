@@ -5,6 +5,7 @@
 
 1. 安装
     ```
+    # Version: MySQL 8.0.22
     # rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
     # rpm -ivh https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
     # yum repolist all | grep mysql
@@ -19,10 +20,11 @@
     ```
     # vim /etc/my.cnf
         [client]
-        default_character_set = utf8mb4
+        default-character-set = utf8mb4
 
         [mysqld]
-        default_character_set = utf8mb4
+        # default_character_set = utf8mb4
+        character_set_server=utf8mb4
         # 服务器为每个链接客户端执行的字符串
         init_connect = 'SET NAMES utf8mb4'
         # 控制客户端连接握手时候不使用默认的校对规则。使用 collation_server 规定的校对规则。
