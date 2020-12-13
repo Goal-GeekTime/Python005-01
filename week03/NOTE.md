@@ -263,25 +263,34 @@
         """
         # 用户表: id、用户名
         """
-        __tablename__ = 'account'
+        __tablename__ = 'accounts'
         uid = Column(BigInteger(), primary_key=True)
-        name = Column(String(50), nullable=False)
+        name = Column(String(32), nullable=False)
+
+        def __repr__(self):
+            return "<id :%s name :%s>" %(self.uid, self.name)
 
     class UserAsset(Base):
         """
         # 资产表: id、用户id、总资产
         """
-        __tablename__ = 'asset'
+        __tablename__ = 'assets'
         id = Column(BigInteger(), primary_key=True)
-        uid = Column(Integer,ForeignKey("account.id")) 
-        total_asset = Column(BigInteger()
+        total_asset = Column(BigInteger(), ullable=False)
+        user_id = Column(BigInteger, ForeignKey("accounts.uid")) 
 
-     class UserAsset(Base):
+        account = relationship("UserTable", backref="asset")
+
+        def __repr__(self):
+            return "<id:%s name:%s>" %(self.id, self.account.name)
+
+    class UserAudit(Base):
         """
         # 审计表: id、转账 id，被转账 id，转账金额、字段创建时间
         """
-        __tablename__ = 'audit'
+        __tablename__ = 'audits'
         id = Column(BigInteger(), primary_key=True)
-        tran_id = Column(Integer,ForeignKey("account.id") ,comment='转账id') 
-        des_id = Column(Integer,ForeignKey("account.id") ,comment='被转账转账id') 
         create_time = Column(TIMESTAMP(3), default=get_time())
+        tran_id = Column(BigInteger,ForeignKey("accounts.uid") ,comment='转账id') 
+        des_id = Column(BigInteger,ForeignKey("accounts.uid") ,comment='被转账转账id') 
+    ```
