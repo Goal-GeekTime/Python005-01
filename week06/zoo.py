@@ -12,8 +12,8 @@
 from collections import defaultdict
 from abc import ABCMeta, abstractmethod
 
-DOGTpye = 'dog'
-CATpye = 'cat'
+DOGType = 'dog'
+CAType = 'cat'
 
 
 class Zoo(object):
