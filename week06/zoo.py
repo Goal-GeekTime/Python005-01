@@ -12,8 +12,8 @@
 from collections import defaultdict
 from abc import ABCMeta, abstractmethod
 
-DOG = 'dog'
-CAT = 'cat'
+DOGTpye = 'dog'
+CATpye = 'cat'
 
 
 class Zoo(object):
@@ -139,7 +139,7 @@ class Cat(Animal):
     def __init__(self, name, _type, _shape, _character):
         super(Cat, self).__init__(_type, _shape, _character)
         self.name = name
-        self.__animal_type = CAT
+        self.__animal_type = CAType
 
     @property
     def is_pets(self):
@@ -182,7 +182,7 @@ class Dog(Animal):
     def __init__(self, name, _type, _shape, _character):
         super(Dog, self).__init__(_type, _shape, _character)
         self.name = name
-        self.__animal_type = DOG
+        self.__animal_type = DOGType
 
     @property
     def is_pets(self):
